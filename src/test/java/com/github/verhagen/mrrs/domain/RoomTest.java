@@ -48,7 +48,7 @@ public class RoomTest {
 
 
 	@Test
-	public void createSimpleRoom() throws Exception {
+	public void createRoomWithFacilities() throws Exception {
 		String name = "Moscow";
 		String location = "02.04";
 		int capacity = 10;

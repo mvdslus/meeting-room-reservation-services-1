@@ -1,14 +1,24 @@
 package com.github.verhagen.mrrs.domain;
 
+import java.util.Set;
+import java.util.TreeSet;
+
 import org.apache.commons.lang3.StringUtils;
 
 public class Room {
 	private final String name;
 	private final String location;
 	private final int capacity;
+	private final Set<Facility> facilities;
 
 
+	public Room(final String location, int capacity) {
+		this(null, location, capacity);
+	}
 	public Room(final String name, final String location, int capacity) {
+		this(name, location, capacity, new TreeSet<Facility>());
+	}
+	public Room(final String name, final String location, int capacity, final Set<Facility> facilities) {
 		final String locationCln = StringUtils.trimToNull(location);
 		if (locationCln == null) {
 			throw new IllegalArgumentException("Argument 'location' should not be null.");
@@ -17,15 +27,11 @@ public class Room {
 			throw new IllegalArgumentException("Argument 'capacity' with value '"
 					+ capacity + "' should be a positive value.");
 		}
-		
+
 		this.name = name;
 		this.location = location;
 		this.capacity = capacity;
-	}
-
-
-	public Room(String location, int capacity) {
-		this(null, location, capacity);
+		this.facilities = facilities;
 	}
 
 
@@ -44,6 +50,11 @@ public class Room {
 
 	public int getCapacity() {
 		return capacity;
+	}
+
+
+	public Set<Facility> getFacilities() {
+		return facilities;
 	}
 
 }
