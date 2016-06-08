@@ -2,7 +2,9 @@ package com.github.verhagen.mrrs.domain;
 
 import static org.junit.Assert.*;
 
-import org.junit.Ignore;
+import java.util.Set;
+import java.util.TreeSet;
+
 import org.junit.Test;
 
 public class RoomTest {
@@ -42,6 +44,23 @@ public class RoomTest {
 		String location = null;
 		int capacity = -2;
 		new Room(location, capacity);
+	}
+
+
+	@Test
+	public void createSimpleRoom() throws Exception {
+		String name = "Moscow";
+		String location = "02.04";
+		int capacity = 10;
+		Set<Facility> facilities = new TreeSet<>();
+		facilities.add(new Facility("whiteboard"));
+		facilities.add(new Facility("beamer"));
+		Room room = new Room(name, location, capacity, facilities);
+		
+		assertEquals(room.getName(), name);
+		assertEquals(room.getLocation(), location);
+		assertEquals(room.getCapacity(), capacity);
+		assertEquals(room.getFacilities(), facilities);
 	}
 
 }
