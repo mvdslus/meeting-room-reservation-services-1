@@ -1,4 +1,4 @@
-package com.github.john.mrrs;
+package com.github.verhagen.mrrs;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
