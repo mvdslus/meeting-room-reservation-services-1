@@ -30,7 +30,6 @@ public class RoomTest {
 		assertEquals(room.getCapacity(), capacity);
 	}
 
-	@Ignore
 	@Test(expected = IllegalArgumentException.class)
 	public void createBasicRoomNoLocation() throws Exception {
 		String location = null;
@@ -38,7 +37,6 @@ public class RoomTest {
 		new Room(location, capacity);
 	}
 
-	@Ignore
 	@Test(expected = IllegalArgumentException.class)
 	public void createBasicRoomNegativeCapacity() throws Exception {
 		String location = null;
