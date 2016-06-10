@@ -3,4 +3,3 @@
 # Meeting Room Reservation Services
 
 __INFO__ This project is based on the [Meeting Room Reservation System - Blog](http://meeting-room-reservation-group.github.io/)
-
