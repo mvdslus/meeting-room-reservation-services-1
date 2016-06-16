@@ -1,9 +1,9 @@
 package com.github.verhagen.mrrs.domain;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
+import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 import org.junit.Test;
 
@@ -52,7 +52,7 @@ public class RoomTest {
 		String name = "Moscow";
 		String location = "02.04";
 		int capacity = 10;
-		Set<Facility> facilities = new TreeSet<>();
+		Set<Facility> facilities = new HashSet<>();
 		facilities.add(new Facility("whiteboard"));
 		facilities.add(new Facility("beamer"));
 		Room room = new Room(name, location, capacity, facilities);

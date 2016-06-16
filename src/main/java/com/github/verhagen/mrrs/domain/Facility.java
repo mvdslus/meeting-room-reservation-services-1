@@ -1,6 +1,6 @@
 package com.github.verhagen.mrrs.domain;
 
-public class Facility implements Comparable<Facility>{
+public class Facility {
 	private final String name;
 
 
@@ -11,12 +11,6 @@ public class Facility implements Comparable<Facility>{
 
 	public String getName() {
 		return name;
-	}
-
-
-	@Override
-	public int compareTo(final Facility other) {
-		return this.getName().compareTo(other.getName());
 	}
 
 }
