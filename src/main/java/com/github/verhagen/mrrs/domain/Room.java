@@ -57,4 +57,31 @@ public class Room {
 		return facilities;
 	}
 
+
+	@Override
+	public String toString() {
+		final StringBuilder bldr = new StringBuilder();
+		if (name != null) {
+			bldr.append(name).append(", ");
+		}
+		bldr.append(location);
+		bldr.append(", ").append(capacity);
+		if (! facilities.isEmpty()) {
+			bldr.append(", [ ").append(toStringFacilities()).append(" ]");
+		}
+
+		return bldr.toString(); 
+	}
+
+	private String toStringFacilities() {
+		StringBuilder bldr = new StringBuilder();
+		for (Facility facility : facilities) {
+			if (bldr.length() > 0) {
+				bldr.append(", ");
+			}
+			bldr.append(facility.getName());
+		}
+		return bldr.toString();
+	}
+
 }
