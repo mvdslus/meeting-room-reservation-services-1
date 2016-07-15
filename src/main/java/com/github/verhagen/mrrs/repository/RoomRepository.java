@@ -31,13 +31,13 @@ public class RoomRepository {
 	}
 
 	public Room getByLocation(final String location) {
-		String locationCln = StringUtils.trimToNull(location);
+		final String locationCln = StringUtils.trimToNull(location);
 		if (locationCln == null) {
-			return null;
+			throw new IllegalArgumentException("Argument 'location' should not be null.");
 		}
 
 		if (! rooms.containsKey(locationCln)) {
-			logger.error("No room known with location '" + locationCln + "'.");
+			throw new IllegalArgumentException("Argument 'location' with value '" + locationCln + "' is not a known room.");
 		}
 
 		return rooms.get(locationCln);
