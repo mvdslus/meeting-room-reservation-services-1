@@ -20,7 +20,7 @@ public class RoomRepository {
 		}
 		if (rooms.containsKey(room.getLocation())) {
 			throw new IllegalArgumentException("There is already a room registered with the location '"
-					+ room.getLocation() + "'. Registered room '" + rooms.get(room.getLocation()) + "'");
+					+ room.getLocation() + "'. Registered room details '" + rooms.get(room.getLocation()) + "'");
 		}
 
 		rooms.put(room.getLocation(), room);

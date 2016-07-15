@@ -1,12 +1,17 @@
 package com.github.verhagen.mrrs.repository;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import org.hamcrest.core.IsEqual;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import com.github.verhagen.mrrs.domain.Facility;
 import com.github.verhagen.mrrs.domain.Room;
 
 public class RoomRepositoryTest {
@@ -26,6 +31,20 @@ public class RoomRepositoryTest {
 		Room room = repo.getByLocation("01.14");
 		assertNotNull(room);
 		assertEquals(room.getCapacity(), 8);
+	}
+
+	@Test
+	public void addWithSameLocation() throws Exception {
+		expExcep.expect(IllegalArgumentException.class);
+		expExcep.expectMessage(new IsEqual<String>("There is already a room registered with the location '01.12'."
+				+ " Registered room details 'Copenhagen, 01.12, 8, [ white board ]'"));
+
+		Set<Facility> facilities = new HashSet<>();
+		facilities.add(new Facility("white board"));
+		RoomRepository repo = new RoomRepository();
+		Room room = new Room("Copenhagen", "01.12", 8, facilities);
+		repo.add(room);
+		repo.add(room);
 	}
 
 	@Test	
