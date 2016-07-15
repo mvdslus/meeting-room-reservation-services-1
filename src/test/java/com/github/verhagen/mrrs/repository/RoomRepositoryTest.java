@@ -34,6 +34,15 @@ public class RoomRepositoryTest {
 	}
 
 	@Test
+	public void addNull() throws Exception {
+		expExcep.expect(IllegalArgumentException.class);
+		expExcep.expectMessage(new IsEqual<String>("Argument 'room' should not be null."));
+
+		RoomRepository repo = new RoomRepository();
+		repo.add(null);
+	}
+
+	@Test
 	public void addWithSameLocation() throws Exception {
 		expExcep.expect(IllegalArgumentException.class);
 		expExcep.expectMessage(new IsEqual<String>("There is already a room registered with the location '01.12'."
