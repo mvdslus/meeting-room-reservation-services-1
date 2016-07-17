@@ -5,9 +5,15 @@ import static org.junit.Assert.assertEquals;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.hamcrest.core.IsEqual;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 public class RoomTest {
+	@Rule
+	public ExpectedException expExcep = ExpectedException.none();
+
 
 	@Test
 	public void createBasicRoom() throws Exception {
@@ -16,9 +22,10 @@ public class RoomTest {
 		int capacity = 12;
 		Room room = new Room(name, location, capacity);
 		
-		assertEquals(room.getName(), name);
-		assertEquals(room.getLocation(), location);
-		assertEquals(room.getCapacity(), capacity);
+		assertEquals(name, room.getName());
+		assertEquals(location, room.getLocation());
+		assertEquals(capacity, room.getCapacity());
+		assertEquals("Berlin, 01.02, 12", room.toString());
 	}
 
 	@Test
@@ -27,9 +34,9 @@ public class RoomTest {
 		int capacity = 12;
 		Room room = new Room(location, capacity);
 		
-		assertEquals(room.getName(), location);
-		assertEquals(room.getLocation(), location);
-		assertEquals(room.getCapacity(), capacity);
+		assertEquals(location, room.getName());
+		assertEquals(location, room.getLocation());
+		assertEquals(capacity, room.getCapacity());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -39,9 +46,12 @@ public class RoomTest {
 		new Room(location, capacity);
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void createBasicRoomNegativeCapacity() throws Exception {
-		String location = null;
+		expExcep.expect(IllegalArgumentException.class);
+		expExcep.expectMessage(new IsEqual<String>("Argument 'capacity' with value '-2' should be a positive value."));
+
+		String location = "1.10";
 		int capacity = -2;
 		new Room(location, capacity);
 	}
@@ -57,10 +67,11 @@ public class RoomTest {
 		facilities.add(new Facility("beamer"));
 		Room room = new Room(name, location, capacity, facilities);
 		
-		assertEquals(room.getName(), name);
-		assertEquals(room.getLocation(), location);
-		assertEquals(room.getCapacity(), capacity);
-		assertEquals(room.getFacilities(), facilities);
+		assertEquals(name, room.getName());
+		assertEquals(location, room.getLocation());
+		assertEquals(capacity, room.getCapacity());
+		assertEquals(facilities, room.getFacilities());
+		assertEquals("Moscow, 02.04, 10, [ beamer, whiteboard ]", room.toString());
 	}
 
 }
