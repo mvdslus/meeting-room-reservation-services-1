@@ -37,6 +37,7 @@ public class RoomTest {
 		assertEquals(location, room.getName());
 		assertEquals(location, room.getLocation());
 		assertEquals(capacity, room.getCapacity());
+		assertEquals("01.02, 12", room.toString());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
