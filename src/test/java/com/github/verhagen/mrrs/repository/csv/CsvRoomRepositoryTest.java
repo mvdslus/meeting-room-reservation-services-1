@@ -2,6 +2,8 @@ package com.github.verhagen.mrrs.repository.csv;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
+import java.io.FileReader;
 import java.io.Reader;
 import java.io.StringReader;
 
@@ -23,6 +25,19 @@ public class CsvRoomRepositoryTest {
 
 		assertEquals("Berlin", roomRepo.getByLocation("B24").getName());
 		assertEquals("Berlin, B24, 16, [ large screen, white board ]", roomRepo.getByLocation("B24").toString());
+	}
+
+	@Test
+	public void importByReaderFromFile() throws Exception {
+		File pathTestResources = new File("src/test/resources");
+		File file = new File(pathTestResources, "room.csv");
+		RoomRepository roomRepo = CsvRoomRepository.importBy(new FileReader(file));
+
+		assertEquals("London", roomRepo.getByLocation("C20").getName());
+		assertEquals("London, C20, 50, [ stage, 2 beamers ]", roomRepo.getByLocation("C20").toString());
+
+		assertEquals("Paris", roomRepo.getByLocation("C40").getName());
+		assertEquals("Paris, C40, 800, [ white board, 2 large screens ]", roomRepo.getByLocation("C40").toString());
 	}
 
 

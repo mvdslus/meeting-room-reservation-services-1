@@ -21,7 +21,7 @@ public class CsvRoom {
 
 	public Room createRoom() {
 		Set<Facility> facilitiesColl = Collections.emptySet();
-		final String facilitiesCln = StringUtils.trimToNull(facilities);
+		final String facilitiesCln = StringUtils.trimToNull(getFacilities());
 		if (facilitiesCln != null) {
 			facilitiesColl = new HashSet<>();
 			final String[] facilityArray = facilitiesCln.split(",");
@@ -30,7 +30,7 @@ public class CsvRoom {
 			}
 		}
 
-		return new Room(name, location, capacity, facilitiesColl);
+		return new Room(getName(), getLocation(), getCapacity(), facilitiesColl);
 	}
 
 
