@@ -12,7 +12,7 @@ import com.github.verhagen.mrrs.repository.RoomRepository;
 public class CsvRoomRepositoryTest {
 
 	@Test
-	public void create() throws Exception {
+	public void importByReader() throws Exception {
 		RoomRepository roomRepo = CsvRoomRepository.importBy(createReader());
 
 		assertEquals("A02", roomRepo.getByLocation("A02").getName());
