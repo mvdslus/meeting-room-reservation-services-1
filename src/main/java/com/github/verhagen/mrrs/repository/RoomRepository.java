@@ -4,13 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.github.verhagen.mrrs.domain.Room;
 
 public class RoomRepository {
-	private static Logger logger = LoggerFactory.getLogger(RoomRepository.class);
 	private Map<String, Room> rooms = new HashMap<>();
 
 
