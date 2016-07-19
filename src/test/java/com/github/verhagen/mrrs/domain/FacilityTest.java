@@ -1,11 +1,15 @@
 package com.github.verhagen.mrrs.domain;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
+import org.hamcrest.core.IsEqual;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 public class FacilityTest {
+	@Rule
+	public ExpectedException expExcep = ExpectedException.none();
 
 
 	@Test
@@ -22,13 +26,13 @@ public class FacilityTest {
 		
 		assertEquals("Whiteboard", facility.getName());
 	}
-	
+
 	@Test
-	public void compare() throws Exception {
-		Facility whiteboard = new Facility("whiteboard");
-		Facility beamer = new Facility("beamer");
-		assertTrue(whiteboard.compareTo(beamer) > 0);
-		assertTrue(beamer.compareTo(whiteboard) < 0);
+	public void createEmpty() throws Exception {
+		expExcep.expect(IllegalArgumentException.class);
+		expExcep.expectMessage(new IsEqual<String>("Argument 'name' should not be null."));
+
+		new Facility("  \t ");
 	}
 
 }
