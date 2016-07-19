@@ -33,12 +33,6 @@ public class RoomSteps {
 	    roomRepo.add(new Room(name, location, capacity, createFacilities(facilities)));
 	}
 
-//	@Given("^which has facility '(.*?)'$")
-//	public void which_has_facility(String arg1) throws Throwable {
-//	    // Write code here that turns the phrase above into concrete actions
-//	    throw new PendingException();
-//	}
-
 	@When("^searching for room with location '(.*?)'$")
 	public void searching_for_room_with_location(final String location) throws Throwable {
 	    currentRoom = roomRepo.getByLocation(location);
@@ -61,7 +55,7 @@ public class RoomSteps {
 	}
 
 	// Helper methods
-	
+
 	private Set<Facility> createFacilities(final String facilitiesStr) {
 		final String facilitiesCln = StringUtils.trimToNull(facilitiesStr);
 		if (facilitiesCln == null) {
